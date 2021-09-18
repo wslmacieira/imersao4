@@ -5,6 +5,7 @@ import { TransactionsModule } from './transactions/transactions.module';
 import { ConfigModule } from '@nestjs/config';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Transaction } from './transactions/entities/transaction.entity';
+import { AccountsModule } from './accounts/accounts.module';
 
 @Module({
   imports: [
@@ -24,6 +25,7 @@ import { Transaction } from './transactions/entities/transaction.entity';
       },
     }),
     TransactionsModule,
+    AccountsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
