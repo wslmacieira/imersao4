@@ -10,6 +10,7 @@ import { AccountsModule } from './accounts/accounts.module';
 import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { TenantModule } from './tenant/tenant.module';
+import { ReportsModule } from './reports/reports.module';
 
 @Module({
   imports: [
@@ -33,6 +34,7 @@ import { TenantModule } from './tenant/tenant.module';
     CommonModule,
     AuthModule,
     TenantModule,
+    ReportsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
