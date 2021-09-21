@@ -17,6 +17,13 @@ function MyApp({ Component, pageProps, cookies }: AppProps & { cookies: any }) {
     <SSRKeycloakProvider
       keycloakConfig={KEYCLOAK_PUBLIC_CONFIG}
       persistor={SSRCookies(cookies)}
+      initOptions={{
+        onLoad: "check-sso", // single sign on
+        silentCheckSsoRedirectUri:
+          typeof window !== "undefined"
+            ? `${window.location.origin}/silent-check-sso.html`
+            : null,
+      }}
     >
       <ThemeProvider theme={theme}>
         <CssBaseline />
@@ -29,7 +36,7 @@ function MyApp({ Component, pageProps, cookies }: AppProps & { cookies: any }) {
 // req => server nextjs =>
 MyApp.getInitialProps = async (appContext: AppContext) => {
   return {
-    cookies: parseCookies(appContext.ctx.req)
-  }
+    cookies: parseCookies(appContext.ctx.req),
+  };
 };
 export default MyApp;
