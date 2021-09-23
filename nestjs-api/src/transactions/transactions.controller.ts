@@ -3,7 +3,7 @@ import { TenantGuard } from './../tenant/tenant.guard';
 import { Controller, Get, Post, Body, UseGuards, Req } from '@nestjs/common';
 import { TransactionsService } from './transactions.service';
 import { CreateTransactionDto } from './dto/create-transaction.dto';
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
+import { JwtAuthGuard } from './../auth/jwt-auth.guard';
 
 @UseGuards(JwtAuthGuard, TenantGuard)
 @Controller('transactions')
@@ -20,7 +20,6 @@ export class TransactionsController {
 
   @Get()
   findAll(@Req() req) {
-    console.log(this.tenantService.tenant, req.user);
     return this.transactionsService.findAll();
   }
 }

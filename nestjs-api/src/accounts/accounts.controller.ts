@@ -1,4 +1,3 @@
-import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import {
   Controller,
   Get,
@@ -6,12 +5,10 @@ import {
   Body,
   Param,
   ParseUUIDPipe,
-  UseGuards,
 } from '@nestjs/common';
 import { AccountsService } from './accounts.service';
 import { CreateAccountDto } from './dto/create-account.dto';
 
-@UseGuards(JwtAuthGuard)
 @Controller('accounts')
 export class AccountsController {
   constructor(private readonly accountsService: AccountsService) {}
@@ -28,6 +25,6 @@ export class AccountsController {
 
   @Get(':id')
   findOne(@Param('id', new ParseUUIDPipe()) id: string) {
-    return this.accountsService.findOne(+id);
+    return this.accountsService.findOne(id);
   }
 }

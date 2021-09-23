@@ -11,6 +11,7 @@ import { CommonModule } from './common/common.module';
 import { AuthModule } from './auth/auth.module';
 import { TenantModule } from './tenant/tenant.module';
 import { ReportsModule } from './reports/reports.module';
+import { Report } from './reports/entities/report.entity';
 
 @Module({
   imports: [
@@ -22,11 +23,12 @@ import { ReportsModule } from './reports/reports.module';
       username: process.env.DB_USERNAME,
       password: process.env.DB_PASSWORD,
       database: process.env.DB_DATABASE,
-      models: [Transaction, Account],
+      models: [Transaction, Account, Report],
       autoLoadModels: true,
       synchronize: true,
       sync: {
         alter: true,
+        // force: true,
       },
     }),
     TransactionsModule,
